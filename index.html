@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OM Fruit Juice Center</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fffdf8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #ff9800, #ff5722);
+      color: white;
+      padding: 20px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    nav { text-align: center; margin-top: 10px; }
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('https://images.unsplash.com/photo-1574226516831-e1dff420e12d');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    .hero h2 { font-size: 44px; margin-bottom: 10px; }
+    .hero p { font-size: 18px; max-width: 700px; margin: auto; }
+
+    .btn {
+      margin-top: 15px;
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section h2 { text-align: center; margin-bottom: 30px; color: #ff5722; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+
+    .order-box, .login-box {
+      max-width: 450px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 15px 18px;
+      border-radius: 50%;
+      font-size: 22px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🍹 OM FRUIT JUICE CENTER</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#order">Order</a>
+    <a href="#delivery">Delivery</a>
+    <a href="#login">Login</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h2>Fresh Fruits • Modern Taste</h2>
+    <p>Refreshing fruit juices made from strawberry, pineapple, mosambi, apple, chikoo, watermelon, mix fruit & more.</p>
+    <button class="btn">Order Fresh Juice</button>
+  </div>
+</section>
+
+<section class="section" id="menu">
+  <h2>Our Fresh Juice Menu</h2>
+  <div class="grid">
+    <div class="card">Strawberry Juice</div>
+    <div class="card">Pineapple Juice</div>
+    <div class="card">Mosambi Juice</div>
+    <div class="card">Apple Juice</div>
+    <div class="card">Chikoo Juice</div>
+    <div class="card">Watermelon Juice</div>
+    <div class="card">Mix Fruit Juice</div>
+    <div class="card">Seasonal Fruit Juices</div>
+  </div>
+</section>
+
+<section class="section" id="order">
+  <h2>Online Juice Order</h2>
+  <div class="order-box">
+    <select id="juice">
+      <option value="">Select Juice</option>
+      <option>Strawberry</option>
+      <option>Pineapple</option>
+      <option>Mosambi</option>
+      <option>Apple</option>
+      <option>Chikoo</option>
+      <option>Watermelon</option>
+      <option>Mix Fruit</option>
+    </select>
+    <input id="qty" type="number" placeholder="Quantity (Glasses)" />
+    <input id="address" type="text" placeholder="Delivery Address (Sangli only)" />
+
+    <hr/>
+    <input id="mobile" type="tel" placeholder="Mobile Number" />
+    <button class="btn" style="width:100%" onclick="sendOTP()">Send OTP</button>
+
+    <input id="otp" type="number" placeholder="Enter OTP" style="display:none" />
+    <button id="verifyBtn" class="btn" style="width:100%; display:none" onclick="verifyOTP()">Verify OTP & Confirm Order</button>
+
+    <p id="orderMsg" style="text-align:center; margin-top:10px;"></p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About Fruit Juice</h2>
+  <p>
+    Fruit juice is the liquid from fruit, packed with vitamins, antioxidants, and natural sugars. It offers benefits such as hydration and skin health. However, moderation is important due to concentrated sugars and calories. 100% fruit juice is healthier than juice drinks with added sugars. While juice is a convenient way to get nutrients, whole fruits remain superior because of their fiber content. Consuming fruit juice along with whole fruits and vegetables is recommended for overall health.
+  </p>
+</section>
+
+<section class="section" id="delivery">
+  <h2>Home Delivery & Customer Services</h2>
+  <p style="text-align:center; font-weight:600; color:#333; margin-bottom:20px;">📍 Service available only in <strong>Sangli City</strong></p>
+  <div class="grid">
+    <div class="card">
+      <h3>Fast Home Delivery</h3>
+      <p>Fresh juices delivered safely <strong>only within Sangli city limits</strong>.</p>
+    </div>
+    <div class="card">
+      <h3>Bulk Orders</h3>
+      <p>Special service for students, offices, parties, and company events in Sangli.</p>
+    </div>
+    <div class="card">
+      <h3>Customer Support</h3>
+      <p>Call us anytime for orders, feedback, or special juice requests in Sangli.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="login">
+  <h2>Login / Create Account</h2>
+  <div class="login-box">
+    <input id="username" type="text" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button class="btn" style="width:100%" onclick="login()">Login</button>
+    <button class="btn" style="width:100%; background:#4caf50" onclick="register()">Create Account</button>
+    <p id="loginMsg" style="text-align:center; margin-top:10px;"></p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p style="text-align:center; font-size:18px;">
+    📞 Contact Number: <strong>8390549932</strong><br/><br/>
+    ⏰ Open Daily: 9 AM – 10 PM
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 OM Fruit Juice Center | Fresh • Healthy • Modern</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/918390549932" target="_blank">💬</a>
+
+<!-- AI Voice Assistant Button -->
+<button id="voiceBtn" style="position:fixed; bottom:90px; right:20px; background:#ff5722; color:white; border:none; padding:15px 18px; border-radius:50%; font-size:20px; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.3);">🎤</button>
+<script>
+  function register() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+
+    if (!user || !pass) {
+      document.getElementById('loginMsg').innerText = 'Please enter username and password';
+      return;
+    }
+
+    localStorage.setItem('om_user', user);
+    localStorage.setItem('om_pass', pass);
+    document.getElementById('loginMsg').innerText = 'Account created successfully. You can login now.';
+  }
+
+  function login() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+
+    const savedUser = localStorage.getItem('om_user');
+    const savedPass = localStorage.getItem('om_pass');
+
+    if (user === savedUser && pass === savedPass) {
+      document.getElementById('loginMsg').innerText = 'Login successful! Welcome ' + user;
+    } else {
+      document.getElementById('loginMsg').innerText = 'Invalid login details';
+    }
+  }
+  let generatedOTP;
+
+  function sendOTP() {
+    const mobile = document.getElementById('mobile').value;
+    if (mobile.length !== 10) {
+      document.getElementById('orderMsg').innerText = 'Enter valid 10-digit mobile number';
+      return;
+    }
+    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+    alert('Demo OTP: ' + generatedOTP);
+    document.getElementById('otp').style.display = 'block';
+    document.getElementById('verifyBtn').style.display = 'block';
+    document.getElementById('orderMsg').innerText = 'OTP sent (demo)';
+  }
+
+  function verifyOTP() {
+    const entered = document.getElementById('otp').value;
+    if (entered == generatedOTP) {
+      document.getElementById('orderMsg').innerText = '✅ Order Confirmed! We will contact you soon.';
+    } else {
+      document.getElementById('orderMsg').innerText = '❌ Invalid OTP';
+    }
+  }
+
+  /* ---------------- AI VOICE ASSISTANT ---------------- */
+  const voiceBtn = document.getElementById('voiceBtn');
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  function speak(text) {
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = 'en-IN';
+    window.speechSynthesis.speak(msg);
+  }
+
+  if (recognition) {
+    recognition.lang = 'en-IN';
+    recognition.onresult = function (event) {
+      const command = event.results[0][0].transcript.toLowerCase();
+
+      if (command.includes('order')) {
+        speak('You can order fresh juice by selecting juice and verifying mobile number');
+        location.href = '#order';
+      } else if (command.includes('menu')) {
+        speak('We serve strawberry, pineapple, mosambi, apple, chikoo, watermelon and mix fruit juice');
+        location.href = '#menu';
+      } else if (command.includes('delivery')) {
+        speak('Home delivery is available only in Sangli city');
+        location.href = '#delivery';
+      } else if (command.includes('contact')) {
+        speak('You can call us on 8390549932');
+        location.href = '#contact';
+      } else {
+        speak('Sorry, I did not understand. Please say order, menu, delivery or contact');
+      }
+    };
+
+    voiceBtn.onclick = () => {
+      speak('Hello! How can I help you? You can say order, menu, delivery or contact');
+      recognition.start();
+    };
+  } else {
+    voiceBtn.onclick = () => alert('Voice assistant not supported in this browser');
+  }
+</script>
+</body>
+</html>
